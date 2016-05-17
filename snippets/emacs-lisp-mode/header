@@ -1,0 +1,24 @@
+# -*- mode: snippet -*-
+# contributor: marco cotrufo <marco.cot@gmail.com>
+# name: header
+# key: mhdr
+# --
+;;; ${0:`(file-relative-name (buffer-file-name))`} --- $1
+
+;; Copyright (C) 2016 - Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Author: Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Created: ${2:`(format-time-string "%d %M %Y")`}
+;; Homepage: https://github.com/marcocot/dot.emacs
+;;
+;; This file is not part of GNU Emacs.
+;;
+;; This file is free software…
+;;
+;;; Commentary:
+;;
+;; $3
+;;
+;;
+;;; Code:
+…
+
