@@ -54,4 +54,8 @@
 (helm-descbinds-mode)
 (helm-mode 1)
 
+;; powerline
+(mc/require-package 'powerline)
+(powerline-center-theme)
+
 (provide 'marco-misc)
