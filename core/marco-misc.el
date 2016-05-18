@@ -1,6 +1,20 @@
-(mc/require-packages '(helm helm-descbinds helm-ag))
+;;; marco-misc.el --- Misc configuration
 
-(desktop-save-mode 1)
+;; Copyright (C) 2016 - Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Author: Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Created: 17 May 2016
+;; Homepage: https://github.com/marcocot/dot.emacs
+;;
+;; This file is not part of GNU Emacs.
+;;
+;; This file is free software…
+;;
+;;; Commentary:
+;;
+;; Misc configuration
+;;
+;;; Code:
+(mc/require-packages '(helm helm-descbinds helm-ag))
 
 ;; Use s-arrow to move cursor around panes
 (windmove-default-keybindings)
@@ -16,10 +30,10 @@
 (require 'helm-config)
 (require 'helm-eshell)
 
-(setq helm-split-window-in-side-p t
-      helm-buffers-fuzzy-matching t
-      helm-move-to-line-cycle-in-source t
-      helm-ff-search-library-in-sexp t
+(setq helm-split-window-in-side-p           t
+      helm-buffers-fuzzy-matching           t
+      helm-move-to-line-cycle-in-source     t
+      helm-ff-search-library-in-sexp        t
       helm-ff-file-name-history-use-recentf t)
 
 (global-set-key (kbd "C-c h") 'helm-command-prefix)
@@ -37,7 +51,6 @@
 (global-set-key (kbd "C-h f") 'helm-apropos)
 (global-set-key (kbd "C-h r") 'helm-info-emacs)
 (global-set-key (kbd "C-h C-l") 'helm-locate-library)
-;; (define-key prelude-mode-map (kbd "C-c f") 'helm-recentf)
 
 (define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
 
@@ -56,6 +69,17 @@
 
 ;; powerline
 (mc/require-package 'powerline)
-(powerline-center-theme)
+(powerline-default-theme)
+
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+;; Indent buffer
+(defun mc/indent-buffer ()
+  "Indent the entire buffer."
+  (interactive)
+  (save-excursion
+    (indent-region (point-min) (point-max) nil)))
+(global-set-key (kbd "<f12>") 'mc/indent-buffer)
 
 (provide 'marco-misc)
+;;; marco-misc.el ends here

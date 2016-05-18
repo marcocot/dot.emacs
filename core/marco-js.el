@@ -1,4 +1,21 @@
-(mc/require-packages '(js2-mode js2-refactor tern company-tern ))
+;;; marco-js.el --- JS Configration
+
+;; Copyright (C) 2016 - Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Author: Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Created: 18 May 2016
+;; Homepage: https://github.com/marcocot/dot.emacs
+;;
+;; This file is not part of GNU Emacs.
+;;
+;; This file is free software…
+;;
+;;; Commentary:
+;;
+;; JS Configuration
+;;
+;;; Code:
+
+(mc/require-packages '(js2-mode js2-refactor tern company-tern web-beautify js-doc))
 
 (setq-default js2-basic-indent 2
               js2-basic-offset 2
@@ -13,6 +30,8 @@
 (add-hook 'js2-mode-hook
           (lambda ()
             (push '("function" . ?ƒ) prettify-symbols-alist)
+            (local-set-key (kbd "C-c b") 'web-beautify-js)
+            (local-set-key (kbd "C-c i") 'js-doc-insert-function-doc)
             (tern-mode t)))
 
 (add-to-list 'auto-mode-alist '("\\.js\\'" . js2-mode))
