@@ -1,13 +1,23 @@
+;;; marco-python.el --- Python configuration
+
+;; Copyright (C) 2016 - Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Author: Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Created: 18 May 2016
+;; Homepage: https://github.com/marcocot/dot.emacs
+;;
+;; This file is not part of GNU Emacs.
+;;
+;; This file is free software…
+;;
+;;; Commentary:
+;;
+;; Emacs as python IDE
+;;
+;;
+;;; Code:
+
 ;; Python configuration
 (mc/require-packages '(anaconda-mode flycheck py-autopep8 web-mode pony-mode))
-
-;; (elpy-enable)
-;; (when (require 'flycheck nil t)
-;;   (setq elpy-modules (delq 'elpy-modules-flymake elpy-modules))
-;;   (add-hook 'elpy-mode-hook 'flycheck-mode))
-
-;; (require 'py-autopep8)
-;; (add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
 
 (add-hook 'python-mode-hook 'anaconda-mode)
 (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
@@ -24,3 +34,4 @@
 (setq web-mode-enable-css-colorization t)
 
 (provide 'marco-python)
+;;; marco-python.el ends here
