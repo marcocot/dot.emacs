@@ -28,9 +28,12 @@
 
 ;; Company mode
 (mc/require-packages '(company))
-(company-mode t)
+(company-mode 1)
 
-
+;; NeoTree
+(mc/require-package 'neotree)
+(require 'neotree)
+(global-set-key (kbd "<f8>") 'neotree-toggle)
 
 (provide 'marco-programming)
 ;;; marco-programming.el ends here
