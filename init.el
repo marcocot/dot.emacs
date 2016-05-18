@@ -35,31 +35,10 @@
 ;; Base
 (mc/require-packages '(projectile dired+))
 
-;; Python configuration
-(mc/require-packages '(elpy flycheck py-autopep8 web-mode))
-(mc/require-package 'magit)
-
-(elpy-enable)
-(when (require 'flycheck nil t)
-  (setq elpy-modules (delq 'elpy-modules-flymake elpy-modules))
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
-
-(require 'py-autopep8)
-(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-
-(require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-(setq web-mode-engine-alist '(("django" . "\\.html\\'")))
-(setq web-mode-markup-indent-offset 2)
-(setq web-mode-code-indent-offset 2)
-(setq web-mode-css-indent-offset 2)
-
-(setq web-mode-enable-auto-pairing t)
-(setq web-mode-enable-auto-expanding t)
-(setq web-mode-enable-css-colorization t)
-
 (require 'marco-misc)
 (require 'marco-programming)
+(require 'marco-python)
+(require 'marco-js)
 
 (provide 'init)
 ;;; init.el ends here
