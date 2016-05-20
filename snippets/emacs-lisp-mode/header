@@ -7,7 +7,7 @@
 
 ;; Copyright (C) 2016 - Marco Cotrufo <marco.cotrufo@devncode.it>
 ;; Author: Marco Cotrufo <marco.cotrufo@devncode.it>
-;; Created: ${2:`(format-time-string "%d %M %Y")`}
+;; Created: ${2:`(format-time-string "%d %B %Y")`}
 ;; Homepage: https://github.com/marcocot/dot.emacs
 ;;
 ;; This file is not part of GNU Emacs.
