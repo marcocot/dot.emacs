@@ -1,3 +1,20 @@
+;;; init.el --- Core init file
+
+;; Copyright (C) 2016 - Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Author: Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Created: 18 May 2016
+;; Homepage: https://github.com/marcocot/dot.emacs
+;;
+;; This file is not part of GNU Emacs.
+;;
+;; This file is free software…
+;;
+;;; Commentary:
+;;
+;; Core init
+;;
+;;; Code:
+
 (require 'package)
 
 (add-to-list 'package-archives
@@ -8,7 +25,7 @@
   (package-refresh-contents))
 
 (defun mc/require-package (package)
-  "Install PACKAGe unless already installed."
+  "Install PACKAGE unless already installed."
   (unless (package-installed-p package)
     (package-install package)))
 
@@ -16,44 +33,58 @@
   "Install PACKAGES unless already installed."
   (mapc #'mc/require-package packages))
 
-(defvar mc/packages
-  '(better-defaults
-    zenburn-theme))
-
-(mapc #'(lambda (package)
-	  (unless (package-installed-p package)
-	    (package-install package)))
-      mc/packages)
+(mc/require-packages '(better-defaults zenburn-theme))
 
 (add-to-list 'load-path "~/.emacs.d/core/")
 
 (setq inhibit-startup-message t)
-(load-theme 'zenburn t)
+
 (global-linum-mode t)
 (setq linum-format "%4d \u2502 ")
 
 ;; Base
 (mc/require-packages '(projectile dired+))
 
+(setq user-full-name    "Marco Cotrufo"
+      user-mail-address "marco.cotrufo@devncode.it")
+
+;; Always load newest byte code
+(setq load-prefer-newer t)
+
+;; enable y/n answers
+(fset 'yes-or-no-p 'y-or-n-p)
+
+;; more useful frame title, that show either a file or a
+;; buffer name (if the buffer isn't visiting a file)
+(setq frame-title-format
+      '((:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name))
+                 "%b"))))
+
+;; delete the selection with a keypress
+(delete-selection-mode t)
+
+;; replace buffer-menu with ibuffer
+(global-set-key (kbd "C-x C-b") #'ibuffer)
+
+(mc/require-package 'guru-mode)
+(require 'guru-mode)
+(guru-global-mode t)
+(setq guru-warn-only t)
+
+(prefer-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+
+;; Theme
+(load-theme 'zenburn t)
+
 (require 'marco-misc)
 (require 'marco-programming)
 (require 'marco-python)
+(require 'marco-web)
 (require 'marco-js)
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(safe-local-variable-values
-   (quote
-    ((pony-settings
-      (make-pony-project :python "env/scripts/python" :appsdir "src/" :settings "development.py"))))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

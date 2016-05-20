@@ -11,7 +11,9 @@
 
 ;;; Code:
 
-(mc/require-packages '(flycheck magit git-gutter git-blame projectile ag yasnippet))
+(mc/require-packages
+ '(flycheck magit git-gutter git-blame projectile
+            ag yasnippet))
 
 ;; Enable flycheck mode
 (global-flycheck-mode)
@@ -28,10 +30,12 @@
 
 ;; Company mode
 (mc/require-packages '(company))
-(company-mode 1)
+(global-company-mode t)
+(global-set-key (kbd "TAB") 'company-complete)
 
 ;; NeoTree
 (mc/require-package 'neotree)
+
 (require 'neotree)
 (global-set-key (kbd "<f8>") 'neotree-toggle)
 
