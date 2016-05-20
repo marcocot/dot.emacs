@@ -20,5 +20,5 @@
 ;;
 ;;; Code:
 
-(provide '${4:`(file-name-sans-extension buffer-file-name)`})
+(provide '${4:`(file-name-sans-extension (file-relative-name buffer-file-name))`})
 ;;; ${0:`(file-relative-name (buffer-file-name))`} ends here.
