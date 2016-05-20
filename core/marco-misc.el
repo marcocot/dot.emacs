@@ -81,5 +81,11 @@
     (indent-region (point-min) (point-max) nil)))
 (global-set-key (kbd "<f12>") 'mc/indent-buffer)
 
+(mc/require-packages '(crux))
+(require 'crux)
+(global-set-key [remap move-beginning-of-line] #'crux-move-beginning-of-line)
+(global-set-key (kbd "C-c r") #'crux-rename-file-and-buffer)
+(global-set-key (kbd "C-c n") #'crux-cleanup-buffer-or-region)
+
 (provide 'marco-misc)
 ;;; marco-misc.el ends here
