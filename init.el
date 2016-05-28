@@ -85,6 +85,7 @@
 (require 'marco-python)
 (require 'marco-web)
 (require 'marco-js)
+(require 'marco-rust)
 
 (provide 'init)
 ;;; init.el ends here
