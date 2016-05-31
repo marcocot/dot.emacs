@@ -17,16 +17,19 @@
 
 (require 'marco-programming)
 
-(mc/require-packages '(company-racer racer flycheck-rust rust-mode))
+(mc/require-packages '(racer flycheck-rust rust-mode))
 (add-to-list 'auto-mode-alist '("\\.rs\\'" . rust-mode))
 (add-hook 'rust-mode-hook
           '(lambda ()
              (racer-mode t)
              (racer-turn-on-eldoc)
              (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-             (set (make-local-variable 'company-backends) '(company-racer))
+             (add-hook 'rust-mode-hook #'racer-mode)
+             (add-hook 'racer-mode-hook #'eldoc-mode)
+             (add-hook 'racer-mode-hook #'company-mode)
              (local-set-key (kbd "M-.") #'racer-find-definition)
-             (local-set-key (kbd "TAB") #'racer-complete-or-indent)))
+             (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
+             (setq company-tooltip-align-annotations t))
 
 (provide 'marco-rust)
 ;;; marco-rust.el ends here
