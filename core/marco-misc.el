@@ -14,7 +14,7 @@
 ;; Misc configuration
 ;;
 ;;; Code:
-(mc/require-packages '(helm helm-descbinds helm-ag))
+(mc/require-packages '(helm helm-descbinds helm-ag elp anzu diminish))
 
 ;; Use s-arrow to move cursor around panes
 (windmove-default-keybindings)
@@ -86,6 +86,19 @@
 (global-set-key [remap move-beginning-of-line] #'crux-move-beginning-of-line)
 (global-set-key (kbd "C-c r") #'crux-rename-file-and-buffer)
 (global-set-key (kbd "C-c n") #'crux-cleanup-buffer-or-region)
+
+(require 'epl)
+(defun mc/update-all ()
+  "Update the core packages."
+  (interactive)
+  (epl-upgrade))
+
+;; anzu
+(require 'anzu)
+(diminish 'anzu-mode)
+(global-anzu-mode t)
+(global-set-key (kbd "M-%") 'anzu-query-replace)
+(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
 (provide 'marco-misc)
 ;;; marco-misc.el ends here
