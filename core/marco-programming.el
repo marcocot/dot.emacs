@@ -26,6 +26,7 @@
 
 ;; yasnippet
 (require 'yasnippet)
+(diminish yas-minor-mode)
 (yas-global-mode 1)
 
 ;; Company mode
@@ -38,6 +39,8 @@
 
 (require 'neotree)
 (global-set-key (kbd "<f8>") 'neotree-toggle)
+
+(electric-pair-mode t)
 
 (provide 'marco-programming)
 ;;; marco-programming.el ends here
