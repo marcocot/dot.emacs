@@ -27,9 +27,10 @@
              (add-hook 'rust-mode-hook #'racer-mode)
              (add-hook 'racer-mode-hook #'eldoc-mode)
              (add-hook 'racer-mode-hook #'company-mode)
+             (rust-enable-format-on-save)
              (local-set-key (kbd "M-.") #'racer-find-definition)
              (local-set-key (kbd "TAB") #'company-indent-or-complete-common)
-             (setq company-tooltip-align-annotations t))
+             (setq company-tooltip-align-annotations t)))
 
 (provide 'marco-rust)
 ;;; marco-rust.el ends here
