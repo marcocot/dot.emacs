@@ -14,7 +14,7 @@
 ;; Misc configuration
 ;;
 ;;; Code:
-(mc/require-packages '(helm helm-descbinds helm-ag elp anzu diminish))
+(mc/require-packages '(helm helm-descbinds helm-ag elp anzu diminish yaml-mode buffer-move))
 
 ;; Use s-arrow to move cursor around panes
 (windmove-default-keybindings)
@@ -25,6 +25,10 @@
 (global-set-key (kbd "C-c S-<down>") 'shrink-window)
 (global-set-key (kbd "C-c S-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-c S-<left>") 'shrink-window-horizontally)
+
+;; YAML mode
+(require 'yaml-mode)
+(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
 
 ;; Helm
 (require 'helm-config)
@@ -67,6 +71,13 @@
 (helm-descbinds-mode)
 (helm-mode 1)
 
+(defun mc/kill-other-buffers ()
+  "Kill all other buffers."
+  (interactive)
+  (mapc 'kill-buffer
+        (delq (current-buffer)
+              (remove-if-not 'buffer-file-name (buffer-list)))))
+
 ;; powerline
 (mc/require-package 'powerline)
 (powerline-default-theme)
@@ -99,6 +110,12 @@
 (global-anzu-mode t)
 (global-set-key (kbd "M-%") 'anzu-query-replace)
 (global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
+
+;; Buffermode settings
+(global-set-key (kbd "<C-S-up>") 'buf-move-up)
+(global-set-key (kbd "<C-S-down>") 'buf-move-down)
+(global-set-key (kbd "<C-S-left>") 'buf-move-left)
+(global-set-key (kbd "<C-S-right>") 'buf-move-right)
 
 (provide 'marco-misc)
 ;;; marco-misc.el ends here

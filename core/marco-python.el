@@ -17,10 +17,19 @@
 ;;; Code:
 
 ;; Python configuration
-(mc/require-packages '(anaconda-mode flycheck py-autopep8 web-mode pony-mode))
+(mc/require-packages '(anaconda-mode flycheck py-autopep8 web-mode pony-mode virtualenvwrapper))
 
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+(require 'marco-programming)
+
+(require 'virtualenvwrapper)
+(defun mc/python-mode-hook ()
+  "Python hook."
+  (anaconda-mode t)
+  (anaconda-eldoc-mode t)
+  (venv-initialize-interactive-shells)
+  (venv-initialize-eshell)
+  (setq venv-location "~/.virtualenvs/"))
+(add-hook 'python-mode-hook 'mc/python-mode-hook)
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))

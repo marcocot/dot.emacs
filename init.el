@@ -45,9 +45,6 @@
 ;; Base
 (mc/require-packages '(projectile dired+))
 
-(setq user-full-name    "Marco Cotrufo"
-      user-mail-address "marco.cotrufo@devncode.it")
-
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
@@ -80,12 +77,30 @@
 ;; Theme
 (load-theme 'zenburn t)
 
+(require 'personal)
 (require 'marco-misc)
 (require 'marco-programming)
 (require 'marco-python)
 (require 'marco-web)
 (require 'marco-js)
 (require 'marco-rust)
+(require 'marco-go)
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values
+   (quote
+    ((pony-settings make-pony-project :python "./env/Scripts/python" :settings "core.settings.development")
+     (pony-settings
+      (make-pony-project :python "env/scripts/python" :appsdir "src/" :settings "development.py"))))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
