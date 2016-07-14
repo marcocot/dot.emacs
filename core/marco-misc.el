@@ -101,6 +101,7 @@
 (require 'epl)
 (defun mc/update-all ()
   "Update the core packages."
+  (package-refresh-contents)
   (interactive)
   (epl-upgrade))
 
