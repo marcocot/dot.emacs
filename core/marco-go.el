@@ -15,24 +15,44 @@
 ;;
 ;;; Code:
 
-(mc/require-packages '(go-mode company-go go-eldoc go-projectile gotest))
+(use-package gotest
+  :ensure t
+  :bind (:map go-mode-map
+              ("C-c a" . go-test-current-project)
+              ("C-c m" . go-test-current-file)
+              ("C-c ." . go-test-current-test)))
+
+(use-package go-projectile
+  :ensure t
+  :config
+  (progn
+    (go-projectile-set-gopath)
+    (go-projectile-tools-add-path)))
+
+(use-package go-eldoc
+  :ensure t
+  :bind (:map go-mode-map
+              ("C-h f" . godoc-at-point)))
+
+(use-package company-go
+  :ensure t)
+
+(use-package go-mode
+  :ensure t
+  :defer t
+  :bind (:map go-mode-map
+              ("C-c b" . go-run))
+  :config
+  (defun mc/go-mode-hook ()
+    (set (make-local-variable 'company-backends) '(company-go))
+    (go-eldoc-setup)
+    (subword-mode t))
+  (add-hook 'before-save-hook 'gofmt-before-save nil t)
+  (add-hook 'go-mode-hook 'mc/go-mode-hook)
+  (setq tab-width 4)
+  (setq indent-tabs-mode t))
 
 (require 'go-projectile)
-
-(define-key go-mode-map (kbd "C-c a") 'go-test-current-project)
-(define-key go-mode-map (kbd "C-c m") 'go-test-current-file)
-(define-key go-mode-map (kbd "C-c .") 'go-test-current-test)
-(define-key go-mode-map (kbd "C-c b") 'go-run)
-(define-key go-mode-map (kbd "C-h f") 'godoc-at-point)
-
-(add-hook 'before-save-hook 'gofmt-before-save nil t)
-
-(add-hook 'go-mode-hook
-          (lambda ()
-            (set (make-local-variable 'company-backends) '(company-go))
-            (go-eldoc-setup)
-;;            (setq gofmt-command goimports)
-            (subword-mode t)))
 
 (provide 'marco-go)
 ;;; marco-go.el ends here

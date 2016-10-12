@@ -77,6 +77,9 @@
 ;; Theme
 (load-theme 'zenburn t)
 
+(mc/require-package 'use-package)
+(require 'use-package)
+
 (require 'personal)
 (require 'marco-misc)
 (require 'marco-programming)
@@ -88,19 +91,3 @@
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(safe-local-variable-values
-   (quote
-    ((pony-settings make-pony-project :python "./env/Scripts/python" :settings "core.settings.development")
-     (pony-settings
-      (make-pony-project :python "env/scripts/python" :appsdir "src/" :settings "development.py"))))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
