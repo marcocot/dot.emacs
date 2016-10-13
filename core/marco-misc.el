@@ -14,7 +14,23 @@
 ;; Misc configuration
 ;;
 ;;; Code:
-(mc/require-packages '(helm helm-descbinds helm-ag elp anzu diminish yaml-mode buffer-move))
+
+(use-package avy :ensure t
+  :bind
+  (("M-g g" . avy-goto-line)))
+
+(use-package ace-window :ensure t
+  :config
+  (setq aw-keys '(?w ?s ?a ?d))
+  :bind
+  (("M-p" . ace-window)))
+
+(use-package anzu :ensure t
+  :bind
+  (("M-%" . anzu-query-replace)
+   ("C-M-%" . anzu-query-replace-regexp)))
+
+(mc/require-packages '(helm helm-descbinds helm-ag elp  diminish yaml-mode buffer-move))
 
 ;; Use s-arrow to move cursor around panes
 (windmove-default-keybindings)
@@ -105,12 +121,6 @@
   (interactive)
   (epl-upgrade))
 
-;; anzu
-(require 'anzu)
-(diminish 'anzu-mode)
-(global-anzu-mode t)
-(global-set-key (kbd "M-%") 'anzu-query-replace)
-(global-set-key (kbd "C-M-%") 'anzu-query-replace-regexp)
 
 ;; Buffermode settings
 (global-set-key (kbd "<C-S-up>") 'buf-move-up)
