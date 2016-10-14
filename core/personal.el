@@ -18,6 +18,5 @@
 (setq user-full-name "Marco Cotrufo")
 (setq user-mail-address "marco.cotrufo@devncode.it")
 
-
 (provide 'personal)
 ;;; personal.el ends here

@@ -18,7 +18,8 @@
 (require 'package)
 
 (add-to-list 'package-archives
-	     '("melpa" . "http://melpa.org/packages/") t)
+ 	     '(("melpa" . "http://melpa.org/packages/")
+               ("elpy" . "http://jorgenschaefer.github.io/packages/")))
 
 (package-initialize)
 (when (not package-archive-contents)
@@ -88,6 +89,7 @@
 (require 'marco-js)
 (require 'marco-rust)
 (require 'marco-go)
+(require 'marco-haskell)
 
 (provide 'init)
 ;;; init.el ends here
