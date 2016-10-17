@@ -42,7 +42,7 @@
 
 (use-package neotree
   :ensure t
-  :commands (neotree)
+  :commands (neotree-toggle)
   :bind
   (("<f8>" . neotree-toggle)))
 

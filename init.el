@@ -17,9 +17,10 @@
 
 (require 'package)
 
-(add-to-list 'package-archives
- 	     '(("melpa" . "http://melpa.org/packages/")
-               ("elpy" . "http://jorgenschaefer.github.io/packages/")))
+(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+;; (add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+(when (< emacs-major-version 24)
+  (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
 (package-initialize)
 (when (not package-archive-contents)
@@ -34,7 +35,13 @@
   "Install PACKAGES unless already installed."
   (mapc #'mc/require-package packages))
 
-(mc/require-packages '(better-defaults zenburn-theme))
+(use-package better-defaults
+  :ensure t)
+
+(use-package zenburn-theme
+  :ensure t
+  :init
+  (load-theme 'zenburn t))
 
 (add-to-list 'load-path "~/.emacs.d/core/")
 
@@ -75,8 +82,11 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-;; Theme
-(load-theme 'zenburn t)
+(when (eq system-type 'windows-nt)
+  (w32-send-sys-command 61488))
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
 
 (mc/require-package 'use-package)
 (require 'use-package)
@@ -87,7 +97,6 @@
 (require 'marco-python)
 (require 'marco-web)
 (require 'marco-js)
-(require 'marco-rust)
 (require 'marco-go)
 (require 'marco-haskell)
 
