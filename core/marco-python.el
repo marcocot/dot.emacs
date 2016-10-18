@@ -26,6 +26,8 @@
   :after python
   :config (elpy-enable)
   :bind (:map elpy-mode-map
+              ("C-c C-a" . elpy-importmagic-add-import)
+              ("C-c a" . elpy-importmagic-fixup)
               ("<f12>" . elpy-format-code)))
 
 ;; Python configuration
