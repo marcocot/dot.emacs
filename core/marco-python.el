@@ -24,7 +24,9 @@
 (use-package elpy
   :ensure t
   :after python
-  :config (elpy-enable))
+  :config (elpy-enable)
+  :bind (:map elpy-mode-map
+              ("<f12>" . elpy-format-code)))
 
 ;; Python configuration
 ;; (use-package company-anaconda

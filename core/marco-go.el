@@ -38,19 +38,19 @@
   :ensure t)
 
 (use-package go-mode
-  :ensure t
-  :defer t
+  :mode "\\.go\\'"
   :bind (:map go-mode-map
               ("C-c b" . go-run))
   :config
   (defun mc/go-mode-hook ()
     (set (make-local-variable 'company-backends) '(company-go))
     (go-eldoc-setup)
-    (subword-mode t))
+    (subword-mode t)
+	(setq tab-width 2)
+	(setq indent-tabs-mode t)
+	(message "go-mode configured"))
   (add-hook 'before-save-hook 'gofmt-before-save nil t)
-  (add-hook 'go-mode-hook 'mc/go-mode-hook)
-  (setq tab-width 4)
-  (setq indent-tabs-mode t))
+  (add-hook 'go-mode-hook 'mc/go-mode-hook))
 
 (require 'go-projectile)
 
