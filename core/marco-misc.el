@@ -128,5 +128,7 @@
 (global-set-key (kbd "<C-S-left>") 'buf-move-left)
 (global-set-key (kbd "<C-S-right>") 'buf-move-right)
 
+(set-face-attribute 'default nil :family "Consolas" :height 100)
+
 (provide 'marco-misc)
 ;;; marco-misc.el ends here

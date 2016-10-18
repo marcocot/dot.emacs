@@ -38,10 +38,15 @@
 (use-package better-defaults
   :ensure t)
 
-(use-package zenburn-theme
+;; (use-package zenburn-theme
+;;   :ensure t
+;;   :init
+;;   (load-theme 'zenburn t))
+
+(use-package material-theme
   :ensure t
-  :init
-  (load-theme 'zenburn t))
+  :config
+  (load-theme 'material t))
 
 (add-to-list 'load-path "~/.emacs.d/core/")
 
