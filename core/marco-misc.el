@@ -122,6 +122,13 @@
   (epl-upgrade))
 
 
+(use-package eshell-git-prompt
+  :ensure t
+  :init
+  (if (eq system-type 'windows-nt)
+      (eshell-git-prompt-use-theme 'git-radar)
+    (eshell-git-prompt-use-theme 'powerline)))
+
 ;; Buffermode settings
 (global-set-key (kbd "<C-S-up>") 'buf-move-up)
 (global-set-key (kbd "<C-S-down>") 'buf-move-down)
