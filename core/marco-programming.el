@@ -22,7 +22,7 @@
 
 (use-package projectile
   :ensure t
-  :init (projectile-mode))
+  :init (projectile-global-mode t))
 
 (use-package yasnippet
   :ensure t

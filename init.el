@@ -18,7 +18,7 @@
 (require 'package)
 
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-;; (add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
+(add-to-list 'package-archives '("elpy" . "http://jorgenschaefer.github.io/packages/"))
 (when (< emacs-major-version 24)
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 
@@ -35,13 +35,12 @@
   "Install PACKAGES unless already installed."
   (mapc #'mc/require-package packages))
 
+
+(eval-when-compile
+  (mc/require-package 'use-package))
+
 (use-package better-defaults
   :ensure t)
-
-;; (use-package zenburn-theme
-;;   :ensure t
-;;   :init
-;;   (load-theme 'zenburn t))
 
 (use-package material-theme
   :ensure t
