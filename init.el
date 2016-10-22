@@ -51,8 +51,12 @@
 
 (setq inhibit-startup-message t)
 
-(global-linum-mode t)
-(setq linum-format "%4d \u2502 ")
+(use-package linum
+  :ensure t
+  :config
+  (progn
+    (add-hook 'prog-mode-hook 'linum-mode)
+    (setq linum-format "%4d \u2502 ")))
 
 ;; Base
 (mc/require-packages '(projectile dired+))

@@ -137,5 +137,8 @@
 
 (set-face-attribute 'default nil :family "Consolas" :height 100)
 
+(global-set-key (kbd "M-ì") (lambda() (interactive) (insert "~")))
+(global-set-key (kbd "M-'") (lambda() (interactive) (insert "͠`")))
+
 (provide 'marco-misc)
 ;;; marco-misc.el ends here
