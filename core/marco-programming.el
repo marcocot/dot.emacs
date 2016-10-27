@@ -66,6 +66,8 @@
     (rainbow-delimiters-mode t))
   (add-hook 'prog-mode-hook 'mc/rainbow-mode-hook))
 
+
+(which-function-mode t)
 (electric-pair-mode t)
 
 (provide 'marco-programming)
