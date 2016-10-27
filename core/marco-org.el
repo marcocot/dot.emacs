@@ -15,12 +15,26 @@
 ;;
 ;;; Code:
 
-(require 'personal)
-(require 'marco-misc)
-
-(mc/require-packages '(org-bullets))
-
-
+(use-package org
+  :commands (org-store-link org-agenda)
+  :bind
+  ("C-c r" . org-capture)
+  ("C-c l" . org-store-link)
+  ("C-c a" . org-agenda)
+  (:map org-mode-map
+        ("C-TAB" . org-cycle))
+  :config
+  (defun mc/org-mode ()
+    (set (make-local-variable 'auto-save-visited-file-name) t)
+    (setq auto-save-interval 20))
+  (add-hook 'org-mode-hook 'mc/org-mode)
+  (setq org-use-effective-time t)
+  (setq org-modules '(org-habit
+                      org-eval
+                      org-expiry
+                      org-panel
+                      org-screen
+                      org-toc)))
 
 (provide 'marco-org)
 ;;; marco-org.el ends here
