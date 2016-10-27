@@ -40,7 +40,8 @@
 (use-package go-mode
   :mode "\\.go\\'"
   :bind (:map go-mode-map
-              ("C-c b" . go-run))
+              ("C-c b" . go-run)
+              ("<f12>" . gofmt))
   :config
   (defun mc/go-mode-hook ()
     (set (make-local-variable 'company-backends) '(company-go))
