@@ -89,11 +89,12 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-(when (eq system-type 'windows-nt)
-  (w32-send-sys-command 61488))
+(set-frame-parameter nil 'fullscreen 'maximized)
 
-(menu-bar-mode -1)
-(tool-bar-mode -1)
+(when window-system
+  (blink-cursor-mode -1)
+  (menu-bar-mode -1)
+  (tool-bar-mode -1))
 
 (mc/require-package 'use-package)
 (require 'use-package)
@@ -104,6 +105,7 @@
 (require 'marco-python)
 (require 'marco-web)
 (require 'marco-js)
+(require 'marco-email)
 (require 'marco-go)
 (require 'marco-haskell)
 
