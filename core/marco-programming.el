@@ -66,6 +66,14 @@
     (rainbow-delimiters-mode t))
   (add-hook 'prog-mode-hook 'mc/rainbow-mode-hook))
 
+(when (boundp 'global-prettify-symbols-mode)
+  (add-hook 'emacs-lisp-mode-hook
+            (lambda ()
+              (push '("lambda" . ?λ) prettify-symbols-alist)))
+  (add-hook 'js2-mode-hook
+            (lambda ()
+              (push '("function" . ?λ) prettify-symbols-alist)))
+  (global-prettify-symbols-mode +1))
 
 (which-function-mode t)
 (electric-pair-mode t)

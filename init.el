@@ -47,6 +47,7 @@
   (load-theme 'material t))
 
 (add-to-list 'load-path "~/.emacs.d/core/")
+(add-to-list 'load-path "~/.emacs.d/elisp/")
 
 (setq inhibit-startup-message t)
 
@@ -108,20 +109,7 @@
 (require 'marco-email)
 (require 'marco-go)
 (require 'marco-haskell)
+(require 'marco-org)
 
 (provide 'init)
 ;;; init.el ends here
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-    (company-cabal company-go go-projectile gotest json-mode js-doc web-beautify js2-refactor company-tern tern company-web web-mode elpy rainbow-delimiters git-gutter neotree helm-company company yasnippet yaml-mode use-package projectile powerline material-theme magit helm-descbinds helm-ag guru-mode flycheck eshell-git-prompt dired+ crux buffer-move better-defaults anzu ace-window))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )

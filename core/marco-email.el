@@ -1,3 +1,24 @@
+;;; marco-email.el --- Email configuration
+
+;; Copyright (C) 2016 - Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Author: Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Created: 04 novembre 2016
+;; Homepage: https://github.com/marcocot/dot.emacs
+;;
+;; This file is not part of GNU Emacs.
+;;
+;; This file is free software…
+;;
+;;; Commentary:
+;;
+;;
+;;
+;;; Code:
+
+(use-package bbdb
+  :ensure t
+  )
+
 (use-package gnus
   :ensure t
   :commands gnus
@@ -13,7 +34,14 @@
                  (nnimap-server-port 993)
                  (nnimap-stream ssl)
                  (nnimap-authenticator login)))
+  (add-to-list 'gnus-secondary-select-methods
+               '(nnimap "devncode"
+                        (nnimap-address "imap.gmail.com")
+                        (nnimap-server-port 993)
+                        (nnimap-stream ssl)
+                        (nnimap-authenticator login)))
 
+  (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
   (setq gnus-thread-sort-functions '((not gnus-thread-sort-by-date)))
   (setq send-mail-function 'smtpmail-send-it)
   (setq smtpmail-smtp-server "smtp.gmail.com")
@@ -44,13 +72,13 @@
                                   "^Content-Transfer-Encoding:"))
 
   (if window-system
-    (setq gnus-sum-thread-tree-root ">>"
-          gnus-sum-thread-tree-single-indent " >"
-          gnus-sum-thread-tree-leaf-with-other "+-> "
-          gnus-sum-thread-tree-indent " "
-          gnus-sum-thread-tree-vertical "|"
-          gnus-sum-thread-tree-single-leaf "`-> "
-          gnus-sum-thread-tree-false-root "~>")))
+      (setq gnus-sum-thread-tree-root ">>"
+            gnus-sum-thread-tree-single-indent " >"
+            gnus-sum-thread-tree-leaf-with-other "+-> "
+            gnus-sum-thread-tree-indent " "
+            gnus-sum-thread-tree-vertical "|"
+            gnus-sum-thread-tree-single-leaf "`-> "
+            gnus-sum-thread-tree-false-root "~>")))
 
 (use-package bbdb
   :ensure t
@@ -62,3 +90,4 @@
     (setq bbdb-message-all-addresses t)))
 
 (provide 'marco-email)
+;;; marco-email.el ends here

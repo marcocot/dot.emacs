@@ -140,5 +140,13 @@
 (global-set-key (kbd "M-ì") (lambda() (interactive) (insert "~")))
 (global-set-key (kbd "M-'") (lambda() (interactive) (insert "͠`")))
 
+;;
+(use-package uniquify
+  :config
+  (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
+
+;; IMenu auto rescan
+(set-default 'imenu-auto-rescan t)
+
 (provide 'marco-misc)
 ;;; marco-misc.el ends here
