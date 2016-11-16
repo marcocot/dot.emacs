@@ -14,3 +14,4 @@ gotools/
 projectile*
 /bbdb
 /bookmarks
+/locals.el

@@ -111,5 +111,9 @@
 (require 'marco-haskell)
 (require 'marco-org)
 
+(when (file-readable-p (concat user-emacs-directory "locals.el"))
+  (progn
+    (load-file (concat user-emacs-directory "locals.el"))
+    (message "Local file loaded")))
+
 (provide 'init)
-;;; init.el ends here
