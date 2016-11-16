@@ -145,6 +145,13 @@
   :config
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
+(use-package markdown-mode
+  :ensure t
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
+
 ;; IMenu auto rescan
 (set-default 'imenu-auto-rescan t)
 
