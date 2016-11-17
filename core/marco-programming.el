@@ -47,6 +47,12 @@
               :map company-active-map
               ("C-:" . helm-company)))
 
+(use-package company-flx
+  :ensure t
+  :config
+  (with-eval-after-load 'company
+    (company-flx-mode t)))
+
 (use-package neotree
   :ensure t
   :commands (neotree-toggle)
