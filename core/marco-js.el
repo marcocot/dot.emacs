@@ -16,11 +16,13 @@
 ;;; Code:
 
 (use-package tern
+  :ensure t
   :commands tern-mode
   :config
   (add-hook 'js2-mode-hook (lambda() (tern-mode t)))
   (with-eval-after-load "company"
     (use-package company-tern
+      :ensure t
       :config
       (add-to-list 'company-backends 'company-tern))))
 
@@ -52,6 +54,7 @@
    js2-global-externs (list "window" "module" "require" "assert" "expect" "jQuery" "$")))
 
 (use-package json-mode
+  :ensure t
   :commands json-mode
   :bind (:map json-mode-map
               ("<f12>" . json-mode-beautify)))
