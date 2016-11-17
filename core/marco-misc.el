@@ -31,6 +31,7 @@
    ("C-M-%" . anzu-query-replace-regexp)))
 
 (mc/require-packages '(helm helm-descbinds helm-ag elp  diminish yaml-mode buffer-move))
+(diminish 'helm-mode)
 
 ;; Use s-arrow to move cursor around panes
 (windmove-default-keybindings)
@@ -140,7 +141,6 @@
 (global-set-key (kbd "M-ì") (lambda() (interactive) (insert "~")))
 (global-set-key (kbd "M-'") (lambda() (interactive) (insert "͠`")))
 
-;;
 (use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets))

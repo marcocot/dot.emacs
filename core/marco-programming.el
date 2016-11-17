@@ -22,16 +22,17 @@
 
 (use-package projectile
   :ensure t
+  :diminish projectile-mode
   :init (projectile-global-mode t))
 
 (use-package yasnippet
   :ensure t
-  :diminish yas-global-mode
   :init (yas-global-mode 1))
 
 (use-package company
   :ensure t
   :commands (company-complete)
+  :diminish 'company-mode
   :init (global-company-mode t)
   :bind (("C-." . company-complete))
   :config
@@ -61,6 +62,7 @@
 
 (use-package git-gutter
   :ensure t
+  :diminish 'git-gutter-mode
   :config
   (git-gutter:linum-setup)
   (add-hook 'prog-mode-hook 'git-gutter-mode))

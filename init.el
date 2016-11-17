@@ -84,6 +84,7 @@
 (require 'guru-mode)
 (guru-global-mode t)
 (setq guru-warn-only t)
+(diminish 'guru-mode)
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
