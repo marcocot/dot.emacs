@@ -41,10 +41,10 @@
 (use-package better-defaults
   :ensure t)
 
-(use-package material-theme
+(use-package arjen-grey-theme
   :ensure t
   :config
-  (load-theme 'material t))
+  (load-theme 'arjen-grey t))
 
 (add-to-list 'load-path "~/.emacs.d/core/")
 (add-to-list 'load-path "~/.emacs.d/elisp/")
@@ -115,5 +115,10 @@
   (progn
     (load-file (concat user-emacs-directory "locals.el"))
     (message "Local file loaded")))
+
+;; Move away custom file
+(setq custom-file (concat user-emacs-directory "custom.el"))
+(when (file-readable-p custom-file)
+  (load custom-file))
 
 (provide 'init)
