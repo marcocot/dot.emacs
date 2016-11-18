@@ -105,12 +105,13 @@
 (require 'marco-misc)
 (require 'marco-programming)
 (require 'marco-python)
-(require 'marco-web)
+;; (require 'marco-web)
 (require 'marco-js)
-(require 'marco-email)
+;; (require 'marco-email)
 (require 'marco-go)
-(require 'marco-haskell)
+;; (require 'marco-haskell)
 (require 'marco-org)
+(require 'marco-rss)
 
 (when (file-readable-p (concat user-emacs-directory "locals.el"))
   (progn
