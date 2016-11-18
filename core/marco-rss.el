@@ -15,23 +15,61 @@
 ;;
 ;;; Code:
 
-(mc/require-packages '(elfeed))
+(require 'youtube-dl)
 
-(setq elfeed-feeds
-      '(("http://feeds.feedburner.com/OdeToCode?format=xml" csharp)
-        ("http://feeds.hanselman.com/ScottHanselman" csharp development)
+(use-package elfeed
+  :ensure t
+  :commands (elfeed)
+  :bind (("C-x w" . elfeed))
+  :config
+  (defun elfeed-search-format-date (date)
+    (format-time-string "%d/%m" (seconds-to-time date)))
+  (setq elfeed-db-directory (mc/dropbox-path "/.elfeed/"))
+  (setq elfeed-feeds
+        '(("http://martinfowler.com/bliki/bliki.atom" programming)
+          ("http://www.lunaryorn.com/feed.atom" emacs)
+          ("http://feeds.feedburner.com/PHPMaster_feed" programming php)
+          ("http://feeds.feedburner.com/OdeToCode" programming)
+          ("http://feeds.feedburner.com/ScottHanselman" programming)
+          ("http://staltz.com/feed.xml" programming frontend)
+          ("http://golangweekly.com/rss" programming golang)
+          ("http://golangnews.com/index.xml" programming golang)
+          ("http://www.spacejokers.it/feed/" gaming ed)
+          ("https://community.elitedangerous.com/taxonomy/term/9/feed" gaming ed)
+          ("http://emacsredux.com/atom.xml" emacs)
+          ("http://planet.emacsen.org/atom.xml" emacs)
+          ("http://www.masteringemacs.org/feed/" emacs)
+          ("http://pragmaticemacs.com/feed/" emacs)
+          ("http://feeds.feedburner.com/sachac" emacs)
+          ("http://endlessparentheses.com/atom.xml" emacs)
+          ("http://feeds.feedburner.com/XahsEmacsBlog" emacs)
+          ("http://nullprogram.com/feed/" programming)
+          ("https://www.reddit.com/r/emacs/.rss" emacs reddit)
+          ("http://emacshorrors.com/feed.atom" emacs)
+          ("https://www.youtube.com/feeds/videos.xml?channel_id=UCsgl7n_Zj35ODRZ_a_K5R-A" youtube emacs programming)))
 
-        ("http://pragmaticemacs.com/feed/" emacs)
-        ("http://sachachua.com/blog/category/emacs/feed/" emacs)
-        ("http://ergoemacs.org/emacs/blog.xml" emacs)
-        ("http://emacsredux.com/atom.xml" emacs)
-        ("http://endlessparentheses.com/atom.xml" emacs)
+  (setq url-queue-timeout 30)
 
-        ("https://community.elitedangerous.com/taxonomy/term/9/feed" ed)
-        ("http://www.spacejokers.it/feed/" ed)))
+  (define-key elfeed-search-mode-map "h"
+    (lambda ()
+      (interactive)
+      (elfeed-search-set-filter (default-value 'elfeed-search-filter))))
 
-(defun elfeed-search-format-date (date)
-  (format-time-string "%d/%m" (seconds-to-time date)))
+  (define-key elfeed-search-mode-map "a"
+    (lambda ()
+      (interactive)
+      (elfeed-search-set-filter "-unread")))
+
+
+  (add-hook 'elfeed-new-entry-hook
+            (elfeed-make-tagger :before "2 weeks ago"
+                                :remove 'unread))
+
+  (defun mc/elfeed-youtube-dl ()
+    (interactive)
+    (let ((entry (elfeed-search-selected :single)))
+      (message (elfeed-entry-title entry))
+      (youtube-dl (elfeed-entry-link entry) :title (elfeed-entry-title entry)))))
 
 (provide 'marco-rss)
 ;;; marco-rss.el ends here
