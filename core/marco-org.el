@@ -15,11 +15,7 @@
 ;;
 ;;; Code:
 
-(defun mc/dropbox-path (parts)
-  (if (eq system-type 'windows-nt)
-      (concat (getenv "USERPROFILE") "\\Dropbox\\" parts)))
-
-(use-package orwg
+(use-package org
   :commands (org-store-link org-agenda)
   :bind
   ("C-c r" . org-capture)

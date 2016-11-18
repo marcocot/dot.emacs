@@ -138,12 +138,16 @@
 
 (set-face-attribute 'default nil :family "Consolas" :height 100)
 
-(global-set-key (kbd "M-ì") (lambda() (interactive) (insert "~")))
-(global-set-key (kbd "M-'") (lambda() (interactive) (insert "͠`")))
+(define-key key-translation-map (kbd "M-ì") (kbd "~"))
+(define-key key-translation-map (kbd "M-'") (kbd "`"))
 
 (use-package uniquify
   :config
   (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
+
+(use-package expand-region
+  :ensure t
+  :bind (("C-'" . er/expand-region)))
 
 (use-package markdown-mode
   :ensure t
@@ -154,6 +158,10 @@
 
 ;; IMenu auto rescan
 (set-default 'imenu-auto-rescan t)
+
+(defun mc/dropbox-path (parts)
+  (if (eq system-type 'windows-nt)
+      (concat (getenv "USERPROFILE") "\\Dropbox\\" parts)))
 
 (provide 'marco-misc)
 ;;; marco-misc.el ends here
