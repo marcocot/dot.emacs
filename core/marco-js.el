@@ -57,7 +57,23 @@
   :ensure t
   :commands json-mode
   :bind (:map json-mode-map
-              ("<f12>" . json-mode-beautify)))
+              ("<f12>" . json-mode-beautify))
+  :config
+  (setq js-indent-level 2))
+
+(use-package web-mode
+  :mode (("\\.html\\'" . web-mode))
+  :bind (:map web-mode-map
+              ("C-7" . web-mode-element-close)
+              ("<f12>" . web-mode-buffer-indent))
+
+  :config
+  (setq web-mode-enable-auto-closing t)
+  (setq web-mode-auto-close-style 2)
+  (setq web-mode-enable-auto-quoting t)
+  (setq web-mode-markup-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-enable-css-colorization t))
 
 ;; (mc/require-packages '( js2-refactor  web-beautify js-doc json-mode))
 
