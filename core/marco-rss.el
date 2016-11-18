@@ -46,30 +46,40 @@
           ("http://nullprogram.com/feed/" programming)
           ("https://www.reddit.com/r/emacs/.rss" emacs reddit)
           ("http://emacshorrors.com/feed.atom" emacs)
-          ("https://www.youtube.com/feeds/videos.xml?channel_id=UCsgl7n_Zj35ODRZ_a_K5R-A" youtube emacs programming)))
+          ("https://www.youtube.com/feeds/videos.xml?channel_id=UCsgl7n_Zj35ODRZ_a_K5R-A" youtube emacs programming)
+          ("https://www.youtube.com/feeds/videos.xml?channel_id=UCSRhwaM00ay0fasnsw6EXKA" programming youtube)))
 
   (setq url-queue-timeout 30)
-
-  (define-key elfeed-search-mode-map "h"
-    (lambda ()
-      (interactive)
-      (elfeed-search-set-filter (default-value 'elfeed-search-filter))))
-
-  (define-key elfeed-search-mode-map "a"
-    (lambda ()
-      (interactive)
-      (elfeed-search-set-filter "-unread")))
-
-
-  (add-hook 'elfeed-new-entry-hook
-            (elfeed-make-tagger :before "2 weeks ago"
-                                :remove 'unread))
 
   (defun mc/elfeed-youtube-dl ()
     (interactive)
     (let ((entry (elfeed-search-selected :single)))
       (message (elfeed-entry-title entry))
       (youtube-dl (elfeed-entry-link entry) :title (elfeed-entry-title entry)))))
+
+(define-key elfeed-search-mode-map "h"
+  (lambda ()
+    (interactive)
+    (elfeed-search-set-filter (default-value 'elfeed-search-filter))))
+
+(define-key elfeed-search-mode-map "a"
+  (lambda ()
+    (interactive)
+    (elfeed-search-set-filter "-unread")))
+
+(define-key elfeed-search-mode-map "Y" 'mc/elfeed-youtube-dl)
+
+;; Mark all youtube video
+(defface youtube-elfeed-entry
+  '((t: foreground "#ff0000"))
+  "Marks youtube video.")
+(push '(youtube youtube-elfeed-entry)
+      elfeed-search-face-alist)
+
+(add-hook 'elfeed-new-entry-hook
+          (elfeed-make-tagger :before "2 weeks ago"
+                              :remove 'unread))
+
 
 (provide 'marco-rss)
 ;;; marco-rss.el ends here
