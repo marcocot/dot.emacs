@@ -18,7 +18,13 @@
 
 (use-package flycheck
   :ensure t
-  :init (global-flycheck-mode))
+  :init (global-flycheck-mode)
+  :diminish flycheck-mode
+  :config
+  (flycheck-add-mode 'javascript-eslint 'js2-mode)
+  (setq-default flycheck-disabled-checkers
+                (append flycheck-disabled-checkers
+                        '(javascript-jshint))))
 
 (use-package projectile
   :ensure t
