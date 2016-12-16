@@ -1,12 +1,5 @@
 ;;; marco-programming.el --- Basic programming conf
 ;;
-;; Copyright © 2011-2016 Bozhidar Batsov
-;;
-;; Author: Bozhidar Batsov <bozhidar@batsov.com>
-;; URL: https://github.com/bbatsov/prelude
-;; Version: 1.0.0
-;; Keywords: convenience
-;;
 ;;; Commentary:
 
 ;;; Code:
@@ -33,6 +26,7 @@
 
 (use-package yasnippet
   :ensure t
+  :diminish yas-minor-mode
   :init (yas-global-mode 1))
 
 (use-package company

@@ -101,15 +101,18 @@
 (mc/require-package 'use-package)
 (require 'use-package)
 
+;; Initials
 (require 'personal)
 (require 'marco-misc)
+
+;; Programming modules
 (require 'marco-programming)
 (require 'marco-python)
-;; (require 'marco-web)
+(require 'marco-c)
 (require 'marco-js)
-;; (require 'marco-email)
 (require 'marco-go)
-;; (require 'marco-haskell)
+
+;; Misc
 (require 'marco-org)
 (require 'marco-rss)
 

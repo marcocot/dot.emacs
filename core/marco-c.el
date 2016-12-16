@@ -15,18 +15,53 @@
 ;;
 ;;; Code:
 
-(require 'cc-mode)
-(require 'semantic)
+(use-package cmake-mode
+  :ensure t
+  :mode (("CMakeLists\\.txt\\'" . cmake-mode) ("\\.cmake\\'" . cmake-mode))
+  :init
+  (add-to-list 'company-backends 'company-cmake))
 
-(global-semanticdb-minor-mode t)
-(global-semantic-idle-scheduler-mode t)
-(global-semantic-stickyfunc-mode t)
+(use-package cc-mode
+  :defer t
+  :init
+  (use-package irony
+    :ensure t
+    :diminish (irony-mode)
+    :commands (irony-mode)
+    :init
+    (progn
+      (setq w32-pipe-read-delay 0)))
 
-(semantic-mode t)
+  (use-package irony-eldoc
+    :ensure t
+    :config
+    (add-hook 'irony-mode-hook 'irony-eldoc))
 
-(require 'ede)
-(global-ede-mode)
-(global-set-key (kbd "TAB") 'company-complete)
+  (use-package flycheck-irony
+    :ensure t
+    :init
+    (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+
+  (use-package company-irony
+    :ensure t
+    :init
+    (add-hook 'company-backends 'company-irony))
+
+  (use-package company-irony-c-headers
+    :ensure t
+    :init
+    (add-hook 'company-backends 'company-irony-c-headers))
+
+  (use-package disaster
+    :defer t
+    :ensure t
+    :commands (disaster)
+    :bind (:map c-mode-base-map
+                ("<f11>" . disaster)))
+  (add-hook 'c++-mode-hook 'irony-mode)
+  (add-hook 'c-mode-hook 'irony-mode)
+
+  (add-to-list 'company-backends 'company-clang))
 
 (provide 'marco-c)
 ;;; marco-c.el ends here
