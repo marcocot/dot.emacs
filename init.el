@@ -114,7 +114,6 @@
 
 ;; Misc
 (require 'marco-org)
-(require 'marco-rss)
 
 (when (file-readable-p (concat user-emacs-directory "locals.el"))
   (progn
