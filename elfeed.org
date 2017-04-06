@@ -1,0 +1,32 @@
+* Blogs                                                              :elfeed:
+** Programming                                                 :programming:
+*** http://martinfowler.com/bliki/bliki.atom
+*** http://feeds.feedburner.com/OdeToCode
+*** http://feeds.feedburner.com/ScottHanselman
+*** http://nullprogram.com/feed/
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCSRhwaM00ay0fasnsw6EXKA :youtube:
+*** Frontend                                                     :frontend:
+**** http://staltz.com/feed.xml
+*** GO                                                             :golang:
+**** http://golangweekly.com/rss
+**** http://golangnews.com/index.xml
+*** PHP                                                               :php:
+**** http://feeds.feedburner.com/PHPMaster_feed
+** Emacs                                                             :emacs:
+*** http://www.lunaryorn.com/feed.atom
+*** http://emacsredux.com/atom.xml
+*** http://planet.emacsen.org/atom.xml
+*** http://www.masteringemacs.org/feed/
+*** http://pragmaticemacs.com/feed/
+*** http://feeds.feedburner.com/sachac
+*** http://endlessparentheses.com/atom.xml
+*** http://feeds.feedburner.com/XahsEmacsBlog
+*** https://www.reddit.com/r/emacs/.rss                            :reddit:
+*** http://emacshorrors.com/feed.atom
+*** https://www.youtube.com/feeds/videos.xml?channel_id=UCsgl7n_Zj35ODRZ_a_K5R-A :youtube:
+** Gaming                                                           :gaming:
+*** Elite dangerous                                        :elitedangerous:
+**** http://www.spacejokers.it/feed/
+**** https://community.elitedangerous.com/taxonomy/term/9/feed
+**** https://www.reddit.com/r/EliteCG/.rss                        :reddit:
+**** https://www.reddit.com/r/EliteBountyHunters/.rss             :reddit:

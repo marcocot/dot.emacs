@@ -113,6 +113,7 @@
 (require 'marco-js)
 (require 'marco-go)
 (require 'marco-web)
+(require 'marco-rss)
 
 ;; Misc
 (require 'marco-org)
