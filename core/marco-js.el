@@ -28,6 +28,7 @@
       (add-to-list 'company-backends 'company-tern))))
 
 (use-package js2-mode
+  :ensure t
   :mode (("\\.js$" . js2-mode)
          ("\\.jsx$" . js2-mode))
   :interpreter ("node" . js2-mode)
@@ -41,6 +42,7 @@
   (add-hook 'js2-mode-hook 'mc/js2-mode-hook)
   :config
   (use-package js2-refactor
+    :ensure t
     :commands (js2r-add-keybindings-with-prefix)
     :diminish js2-refactor-mode
     :init
@@ -79,7 +81,20 @@
   (setq web-mode-css-indent-offset 2)
   (setq web-mode-enable-css-colorization t)
   (setq web-mode-engines-alist
-        '(("razor" . "\\.razor\\'"))))
+        '(("razor" . "\\.razor\\'")
+          ("blade" . "\\.blade\\."))))
+
+(defun mc/use-eslint-from-node-modules ()
+  (let* ((root (locate-dominating-file
+                (or (buffer-file-name) default-directory)
+                "node_modules"))
+         (eslint (and root
+                      (expand-file-name "node_modules/eslint/bin/eslint.js"
+                                        root))))
+    (when (and eslint (file-executable-p eslint))
+      (setq-local flycheck-javascript-eslint-executable eslint))))
+
+(add-hook 'flycheck-mode-hook #'mc/use-eslint-from-node-modules)
 
 ;; (mc/require-packages '( js2-refactor  web-beautify js-doc json-mode))
 
