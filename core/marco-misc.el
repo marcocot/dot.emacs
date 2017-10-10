@@ -15,6 +15,36 @@
 ;;
 ;;; Code:
 
+;; ivy
+(use-package counsel
+  :ensure t
+  :bind ("M-x" . counsel-M-x)
+  ("C-x C-f" . counsel-find-file)
+  ("<f1> f" . counsel-describe-function)
+  ("<f1> v" . counsel-describe-variable)
+  ("<f1> l" . counsel-find-library)
+  ("<f1> i" . counsel-info-lookup-symbol)
+  ("<f1> u" . counsel-unicode-char)
+  ("C-g" . counsel-git)
+  ("C-c j" . counsel-git-grep)
+  ("C-c k" . counsel-ag)
+  ("C-x l". counsel-locate))
+
+(use-package swiper
+  :ensure t
+  :bind ("C-s" . swiper))
+
+(use-package ivy
+  :ensure t
+  :diminish ivy-mode
+  :config
+  (ivy-mode t)
+  (setq-default
+   ivy-use-virtual-buffers t
+   ivy-count-format "(%d/%d) ")
+  ivy-re-builders-alist
+  '((t . ivy--regex-fuzzy)))
+
 (use-package avy :ensure t
   :bind
   (("M-g g" . avy-goto-line)))
@@ -30,9 +60,6 @@
   (("M-%" . anzu-query-replace)
    ("C-M-%" . anzu-query-replace-regexp)))
 
-(mc/require-packages '(helm helm-descbinds helm-ag elp  diminish yaml-mode buffer-move))
-(diminish 'helm-mode)
-
 ;; Use s-arrow to move cursor around panes
 (windmove-default-keybindings)
 (setq windmove-wrap-around t)
@@ -43,50 +70,9 @@
 (global-set-key (kbd "C-c S-<right>") 'enlarge-window-horizontally)
 (global-set-key (kbd "C-c S-<left>") 'shrink-window-horizontally)
 
-;; YAML mode
-(require 'yaml-mode)
-(add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode))
-
-;; Helm
-(require 'helm-config)
-(require 'helm-eshell)
-
-(setq helm-split-window-in-side-p           t
-      helm-buffers-fuzzy-matching           t
-      helm-move-to-line-cycle-in-source     t
-      helm-ff-search-library-in-sexp        t
-      helm-ff-file-name-history-use-recentf t)
-
-(global-set-key (kbd "C-c h") 'helm-command-prefix)
-(global-unset-key (kbd "C-x c"))
-
-(define-key helm-command-map (kbd "o") 'helm-occur)
-(define-key helm-command-map (kbd "g") 'helm-do-grep)
-
-(global-set-key (kbd "M-x") 'helm-M-x)
-(global-set-key (kbd "C-x C-m") 'helm-M-x)
-(global-set-key (kbd "M-y") 'helm-show-kill-ring)
-(global-set-key (kbd "C-x b") 'helm-mini)
-(global-set-key (kbd "C-x C-b") 'helm-buffers-list)
-(global-set-key (kbd "C-x C-f") 'helm-find-files)
-(global-set-key (kbd "C-h f") 'helm-apropos)
-(global-set-key (kbd "C-h r") 'helm-info-emacs)
-(global-set-key (kbd "C-h C-l") 'helm-locate-library)
-
-(define-key minibuffer-local-map (kbd "C-c C-l") 'helm-minibuffer-history)
-
-;; shell history.
-(define-key shell-mode-map (kbd "C-c C-l") 'helm-comint-input-ring)
-
-;; use helm to list eshell history
-(add-hook 'eshell-mode-hook
-          #'(lambda ()
-              (substitute-key-definition 'eshell-list-history 'helm-eshell-history eshell-mode-map)))
-
-(substitute-key-definition 'find-tag 'helm-etags-select global-map)
-(setq projectile-completion-system 'helm)
-(helm-descbinds-mode)
-(helm-mode 1)
+(use-package yaml-mode
+  :init
+  (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 
 (defun mc/kill-other-buffers ()
   "Kill all other buffers."
@@ -122,7 +108,6 @@
   (interactive)
   (epl-upgrade))
 
-
 (use-package eshell-git-prompt
   :ensure t
   :init
@@ -135,8 +120,6 @@
 (global-set-key (kbd "<C-S-down>") 'buf-move-down)
 (global-set-key (kbd "<C-S-left>") 'buf-move-left)
 (global-set-key (kbd "<C-S-right>") 'buf-move-right)
-
-(set-face-attribute 'default nil :family "Consolas" :height 100)
 
 (define-key key-translation-map (kbd "M-ì") (kbd "~"))
 (define-key key-translation-map (kbd "M-'") (kbd "`"))

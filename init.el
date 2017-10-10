@@ -1,6 +1,6 @@
 ;;; init.el --- Core init file
 
-;; Copyright (C) 2016 - Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Copyright (C) 2016-2017 - Marco Cotrufo <marco.cotrufo@devncode.it>
 ;; Author: Marco Cotrufo <marco.cotrufo@devncode.it>
 ;; Created: 18 May 2016
 ;; Homepage: https://github.com/marcocot/dot.emacs
@@ -70,10 +70,17 @@
 
 ;; more useful frame title, that show either a file or a
 ;; buffer name (if the buffer isn't visiting a file)
-(setq frame-title-format
+(setq frame-title-fromat
       '((:eval (if (buffer-file-name)
                    (abbreviate-file-name (buffer-file-name))
                  "%b"))))
+
+;; Default font
+(set-face-attribute 'default nil
+                    :family "Source Code Pro"
+                    :height 100
+                    :weight 'normal
+                    :width 'normal)
 
 ;; delete the selection with a keypress
 (delete-selection-mode t)
@@ -113,7 +120,7 @@
 (require 'marco-js)
 (require 'marco-go)
 (require 'marco-web)
-(require 'marco-rss)
+;; (require 'marco-rss)
 
 ;; Misc
 (require 'marco-org)
