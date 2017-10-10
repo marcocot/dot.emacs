@@ -51,7 +51,8 @@
   :ensure t
   :commands (neotree-toggle)
   :bind
-  (("<f8>" . neotree-toggle)))
+  (("<f8>" . neotree-toggle)
+   ("S-<f8>" . neotree-find)))
 
 (use-package git-gutter
   :ensure t

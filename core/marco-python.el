@@ -1,6 +1,6 @@
 ;;; marco-python.el --- Python configuration
 
-;; Copyright (C) 2016 - Marco Cotrufo <marco.cotrufo@devncode.it>
+;; Copyright (C) 2016-present - Marco Cotrufo <marco.cotrufo@devncode.it>
 ;; Author: Marco Cotrufo <marco.cotrufo@devncode.it>
 ;; Created: 18 May 2016
 ;; Homepage: https://github.com/marcocot/dot.emacs
@@ -18,8 +18,15 @@
 
 
 ;; Python configuration
+
+(use-package anaconda-mode
+  :ensure t
+  :init
+  (add-hook 'python-mode-hook 'anaconda-mode)
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
+
 (use-package company-anaconda
-  :ensure
+  :ensure t
   :if (executable-find "python")
   :diminish anaconda-mode
   :init
@@ -40,7 +47,6 @@
                (message "Need to install autopep8 package")))
   :config
   (defun mc/python-mode ()
-    (pyvenv-mode)
     (py-autopep8-enable-on-save))
   (add-hook 'python-mode-hook #'mc/python-mode)
   (use-package virtualenvwrapper

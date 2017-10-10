@@ -120,10 +120,10 @@
 (require 'marco-js)
 (require 'marco-go)
 (require 'marco-web)
-;; (require 'marco-rss)
+(require 'marco-rss)
 
 ;; Misc
-(require 'marco-org)
+;; (require 'marco-org)
 
 (when (file-readable-p (concat user-emacs-directory "locals.el"))
   (progn
