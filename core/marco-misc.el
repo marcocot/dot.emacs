@@ -71,6 +71,7 @@
 (global-set-key (kbd "C-c S-<left>") 'shrink-window-horizontally)
 
 (use-package yaml-mode
+  :ensure t
   :init
   (add-to-list 'auto-mode-alist '("\\.yml\\'" . yaml-mode)))
 

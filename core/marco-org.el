@@ -15,7 +15,7 @@
 ;;
 ;;; Code:
 
-(use-package org
+(use-package org-plus-contrib
   :commands (org-store-link org-agenda)
   :bind
   ("C-c r" . org-capture)

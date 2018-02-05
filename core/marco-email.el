@@ -28,18 +28,6 @@
         '("text/html" "text/richtext")
         mm-automatic-display
         (-difference mm-automatic-display '("text/html" "text/enriched" "text/richtext")))
-  (setq gnus-select-method
-        '(nnimap "gmail"
-                 (nnimap-address "imap.gmail.com")
-                 (nnimap-server-port 993)
-                 (nnimap-stream ssl)
-                 (nnimap-authenticator login)))
-  (add-to-list 'gnus-secondary-select-methods
-               '(nnimap "devncode"
-                        (nnimap-address "imap.gmail.com")
-                        (nnimap-server-port 993)
-                        (nnimap-stream ssl)
-                        (nnimap-authenticator login)))
 
   (add-hook 'gnus-group-mode-hook 'gnus-topic-mode)
   (setq gnus-thread-sort-functions '((not gnus-thread-sort-by-date)))
@@ -55,13 +43,12 @@
           (gnus-killed-mark (subject -5))
           (gnus-catchup-mark (subject -1))))
 
-
   (setq gnus-group-line-format "%m%G (%N) %-16C\n")
 
   (setq gnus-summary-line-format "|%*%U%R%B%s%-66=%-20,20f|%4L |%D|\n"
         gnus-topic-line-format   "%i%n %A (%G) %v\n")
 
-;;; Header
+  ;; Header
   ;; Select the header that should be shown. Yes I am interested in the used mail or news client from other people ;-)
   (setq gnus-visible-headers "^From:\\|^Newsgroups:\\|^List-Id:\\|^Subject:\\|^Date:\\|^Followup-To:\\|^Reply-To:\\|^Summary:\\|^Keywords:\\|^To:\\|^[BGF]?Cc:\\|^Posted-To:\\|^Mail-Copies-To:\\|^Mail-Followup-To:\\|^Apparently-To:\\|^Gnus-Warning:\\|^Resent-From:\\|^X-Sent:\\|^User-Agent:\\|^X-Mailer:\\|^X-Newsreader:\\|^Content-Type:\\|^Content-Transfer-Encoding:")
 

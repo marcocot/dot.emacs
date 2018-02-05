@@ -60,9 +60,6 @@
     (add-hook 'prog-mode-hook 'linum-mode)
     (setq linum-format "%4d \u2502 ")))
 
-;; Base
-(mc/require-packages '(projectile dired+))
-
 ;; Always load newest byte code
 (setq load-prefer-newer t)
 
@@ -89,11 +86,12 @@
 ;; replace buffer-menu with ibuffer
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
-(mc/require-package 'guru-mode)
-(require 'guru-mode)
-(guru-global-mode t)
-(setq guru-warn-only t)
-(diminish 'guru-mode)
+(use-package guru-mode
+  :ensure t
+  :diminish guru-mode
+  :config
+  (guru-global-mode t)
+  (setq guru-warn-only t))
 
 (prefer-coding-system 'utf-8)
 (set-default-coding-systems 'utf-8)
@@ -113,6 +111,7 @@
 ;; Initials
 (require 'personal)
 (require 'marco-misc)
+(require 'marco-org)
 
 ;; Programming modules
 (require 'marco-programming)
@@ -121,6 +120,7 @@
 (require 'marco-js)
 (require 'marco-go)
 (require 'marco-web)
+(require 'marco-email)
 (require 'marco-rss)
 
 ;; Misc
