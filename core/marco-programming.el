@@ -68,6 +68,14 @@
     (rainbow-delimiters-mode t))
   (add-hook 'prog-mode-hook 'mc/rainbow-mode-hook))
 
+(use-package indent-guide
+  :ensure t
+  :config
+  (indent-guide-global-mode))
+
+(use-package docker
+  :ensure t)
+
 (which-function-mode t)
 (electric-pair-mode t)
 
