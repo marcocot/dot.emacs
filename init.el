@@ -38,7 +38,10 @@
   (mapc #'mc/require-package packages))
 
 (eval-when-compile
-  (mc/require-package 'use-package))
+  (mc/require-packages '(use-package diminish)))
+
+(diminish 'auto-revert-mode)
+(global-auto-revert-mode t)
 
 (use-package better-defaults
   :ensure t)
