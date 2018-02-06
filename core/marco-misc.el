@@ -82,9 +82,11 @@
         (delq (current-buffer)
               (remove-if-not 'buffer-file-name (buffer-list)))))
 
-;; powerline
-(mc/require-package 'powerline)
-(powerline-default-theme)
+(use-package spaceline
+  :ensure t
+  :config
+  (require 'spaceline-config)
+  (spaceline-emacs-theme))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
@@ -96,11 +98,12 @@
     (indent-region (point-min) (point-max) nil)))
 (global-set-key (kbd "<f12>") 'mc/indent-buffer)
 
-(mc/require-packages '(crux))
-(require 'crux)
-(global-set-key [remap move-beginning-of-line] #'crux-move-beginning-of-line)
-(global-set-key (kbd "C-c r") #'crux-rename-file-and-buffer)
-(global-set-key (kbd "C-c n") #'crux-cleanup-buffer-or-region)
+(use-package crux
+  :ensure t
+  :bind (("C-c r" . crux-rename-file-and-buffer)
+         ("C-c n" . crux-cleanup-buffer-or-region))
+  :config
+  (global-set-key [remap move-beginning-of-line] #'crux-move-beginning-of-line))
 
 (require 'epl)
 (defun mc/update-all ()
@@ -125,9 +128,6 @@
 (define-key key-translation-map (kbd "M-ì") (kbd "~"))
 (define-key key-translation-map (kbd "M-'") (kbd "`"))
 
-(use-package uniquify
-  :config
-  (setq uniquify-buffer-name-style 'post-forward-angle-brackets))
 
 (use-package expand-region
   :ensure t
