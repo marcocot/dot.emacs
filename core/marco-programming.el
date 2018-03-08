@@ -76,6 +76,7 @@
 (use-package docker
   :ensure t)
 
+(define-key global-map (kbd "RET") 'newline-and-indent)
 (which-function-mode t)
 (electric-pair-mode t)
 
