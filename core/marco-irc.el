@@ -1,6 +1,7 @@
 (use-package erc
   :ensure t
   :commands (erc)
+  :bind (("C-x e" . erc))
   :config
   (progn
     (require 'erc-join)
