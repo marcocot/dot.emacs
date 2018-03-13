@@ -140,6 +140,15 @@
          ("\\.md\\'" . markdown-mode)
          ("\\.markdown\\'" . markdown-mode)))
 
+(use-package undo-tree
+  :ensure t
+  :commands (global-undo-tree-mode)
+  :init (global-undo-tree-mode t))
+
+(use-package browse-kill-ring
+  :ensure t
+  :bind (("C-c y" . browse-kill-ring)))
+
 ;; IMenu auto rescan
 (set-default 'imenu-auto-rescan t)
 
